@@ -20,47 +20,56 @@ const PomodoroSettings = ({
 
   return (
     <div className="timeOptions">
-      <ul>
+      <ul className="nav nav-tabs">
         <li
+          className="nav-item"
           onClick={() => {
             onChangeTimer("working");
           }}
         >
-          My Pomodoro
+          <a className="nav-link active">My Pomodoro</a>
         </li>
         <li
+          className="nav-item"
           onClick={() => {
             onChangeTimer("pomodoro");
           }}
         >
-          Pomodoro Duration
+          <a className="nav-link">Pomodoro Duration</a>
         </li>
         <li
+          className="nav-item"
           onClick={() => {
             onChangeTimer("short");
           }}
         >
-          Short Rest Duration
+          <a className="nav-link">Short Rest Duration</a>
         </li>
         <li
+          className="nav-item"
           onClick={() => {
             onChangeTimer("long");
           }}
         >
-          Long Rest Duration
+          <a className="nav-link">Long Rest Duration</a>
         </li>
       </ul>
-      <div className={itsVisible ? "hidden" : ""}>
-        <p>{displayText}</p>
-        <input
-          onChange={(e) => {
-            onSetTimerValue(e);
-          }}
-          type="text"
-          value={setTimerValue([itsPomodoro, itsShortRest, itsLongRest])}
-          placeholder="00:00"
-        />
-      </div>
+      <form className={itsVisible ? "hidden" : ""}>
+        <div className="form-group">
+          <label htmlFor="setTimersTxt">{displayText}</label>
+          <input
+            id="setTimersTxt"
+            name="setTimersTxt"
+            className="form-control"
+            onChange={(e) => {
+              onSetTimerValue(e);
+            }}
+            type="text"
+            value={setTimerValue([itsPomodoro, itsShortRest, itsLongRest])}
+            placeholder="00:00"
+          />
+        </div>
+      </form>
     </div>
   );
 };
