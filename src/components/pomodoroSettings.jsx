@@ -1,6 +1,6 @@
 import React from "react";
 import PomodoroRange from "./pomodoroRange";
-import timeFormatter from "../utils/timeFrmatter";
+import timeFormatter from "../utils/timeFormatter";
 
 const PomodoroSettings = ({
   displayText,
@@ -58,16 +58,20 @@ const PomodoroSettings = ({
       </ul>
       <form className={itsVisible ? "hidden" : ""}>
         <div className="form-group">
-          <PomodoroRange min="60000" max="3600000" />
           <label htmlFor="setTimersTxt">{displayText}</label>
+          <br />
+          <PomodoroRange
+            min="60000"
+            max="3600000"
+            onChange={onSetTimerValue}
+            value={setTimerValue([itsPomodoro, itsShortRest, itsLongRest])}
+          />
           <input
             id="setTimersTxt"
             name="setTimersTxt"
             className="form-control"
-            onChange={(e) => {
-              onSetTimerValue(e);
-            }}
             type="text"
+            disabled={true}
             value={timeFormatter(
               setTimerValue([itsPomodoro, itsShortRest, itsLongRest])
             )}
