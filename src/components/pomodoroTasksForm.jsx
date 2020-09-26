@@ -1,6 +1,6 @@
 import React from "react";
 
-const PomodoroTaskForm = ({ onAddTask }) => {
+const PomodoroTaskForm = ({ onAddTask, onChangeTaskText }) => {
   return (
     <form onSubmit={onAddTask}>
       <div className="form-group pomodoroInputForm">
