@@ -1,6 +1,6 @@
 import React from "react";
 import PomodoroRange from "./pomodoroRange";
-import timeFormatter from "../utils/timeFormatter";
+import { formatTime } from "../utils/timeFormatter";
 
 const PomodoroSettings = ({
   displayText,
@@ -72,7 +72,7 @@ const PomodoroSettings = ({
             className="form-control"
             type="text"
             disabled={true}
-            value={timeFormatter(
+            value={formatTime(
               setTimerValue([itsPomodoro, itsShortRest, itsLongRest])
             )}
             placeholder="00:00"

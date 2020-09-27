@@ -1,12 +1,12 @@
 import React from "react";
-import timeFormatter from "../utils/timeFormatter";
+import { formatTime } from "../utils/timeFormatter";
 
 const PomodoroTimer = ({ timerValue, itsVisible }) => {
   return (
     <div className={itsVisible ? "pomodoroTimer" : "pomodoroTimer hidden"}>
       My Pomodoro
       <br />
-      {timeFormatter(timerValue)}
+      {formatTime(timerValue)}
     </div>
   );
 };

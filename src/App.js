@@ -17,7 +17,7 @@ class App extends Component {
     itsShortRest: false,
     itsLongRest: false,
     timerVisible: true,
-    tasks: {},
+    tasks: [],
     displayText: "",
     taskTxt: "",
   };
@@ -86,10 +86,6 @@ class App extends Component {
     if (itsLongRest) this.setState({ longRestTime: e.target.value });
   };
 
-  addTask = (e) => {
-    console.log("TASK ADDED");
-  };
-
   compareTimers = () => {};
 
   changeText = (e) => {
@@ -100,8 +96,34 @@ class App extends Component {
     this.setState({ taskTxt: stateCopy });
   };
 
+  addTask = (e) => {
+    const { tasks: stateTasks, taskTxt } = this.state;
+    e.preventDefault();
+    const tasks = [...stateTasks];
+    tasks.push({
+      name: taskTxt,
+      done: false,
+    });
+    this.setState({ tasks, taskTxt: "" });
+  };
+
+  onDoneTask = (name, done) => {
+    const stateTasks = [...this.state.tasks];
+    const task = stateTasks.find((t) => t.name === name);
+    let index = stateTasks.indexOf(task);
+    stateTasks[index].done = !done;
+    this.setState({ tasks: stateTasks });
+  };
+
+  onDeleteTask = (name) => {
+    const stateTasks = this.state.tasks.filter((task) => task.name !== name);
+    this.setState({ tasks: stateTasks });
+  };
+
   render() {
     const {
+      tasks,
+      taskTxt,
       workTime,
       shortRestTime,
       longRestTime,
@@ -114,7 +136,7 @@ class App extends Component {
     } = this.state;
 
     return (
-      <div className="App">
+      <div>
         <PomodoroSettings
           workTime={workTime}
           shortRestTime={shortRestTime}
@@ -135,10 +157,15 @@ class App extends Component {
           onResetTimer={this.resetTimer}
         />
         <PomodoroTasksForm
+          taskText={taskTxt}
           onAddTask={this.addTask}
           onChangeTaskText={this.changeText}
         />
-        <PomodoroTasksList />
+        <PomodoroTasksList
+          tasks={tasks}
+          onDone={this.onDoneTask}
+          onDelete={this.onDeleteTask}
+        />
       </div>
     );
   }

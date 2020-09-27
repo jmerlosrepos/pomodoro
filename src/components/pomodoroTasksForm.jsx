@@ -1,6 +1,6 @@
 import React from "react";
 
-const PomodoroTaskForm = ({ onAddTask, onChangeTaskText }) => {
+const PomodoroTaskForm = ({ onAddTask, onChangeTaskText, taskText }) => {
   return (
     <form onSubmit={onAddTask}>
       <div className="form-group pomodoroInputForm">
@@ -12,6 +12,7 @@ const PomodoroTaskForm = ({ onAddTask, onChangeTaskText }) => {
           type="text"
           placeholder="Do coding for application..."
           onChange={onChangeTaskText}
+          value={taskText}
         />
       </div>
       <button type="submit" className="btn btn-primary">
