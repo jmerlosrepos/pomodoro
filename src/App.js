@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import PomodoroTimer from "./components/pomodoroTimer";
 import PomodoroSettings from "./components/pomodoroSettings";
-import PomodoroControls from "./components/pomodoroControls";
 import PomodoroTasksForm from "./components/pomodoroTasksForm";
 import PomodoroTasksList from "./components/pomodoroTasksList";
 
@@ -136,26 +135,35 @@ class App extends Component {
     } = this.state;
 
     return (
-      <div>
-        <PomodoroSettings
-          workTime={workTime}
-          shortRestTime={shortRestTime}
-          longRestTime={longRestTime}
-          itsVisible={timerVisible}
-          displayText={displayText}
-          itsPomodoro={itsPomodoro}
-          itsShortRest={itsShortRest}
-          itsLongRest={itsLongRest}
-          onChangeTimer={this.changeTimer}
-          onSetTimerValue={this.setTimerValue}
-        />
-        <PomodoroTimer itsVisible={timerVisible} timerValue={currentTime} />
-        <hr />
-        <PomodoroControls
-          onStartTimer={this.startTimer}
-          onStopTimer={this.stopTimer}
-          onResetTimer={this.resetTimer}
-        />
+      <div className="container">
+        <div class="card">
+          <div class="card-body">
+            <PomodoroSettings
+              workTime={workTime}
+              shortRestTime={shortRestTime}
+              longRestTime={longRestTime}
+              itsVisible={timerVisible}
+              displayText={displayText}
+              itsPomodoro={itsPomodoro}
+              itsShortRest={itsShortRest}
+              itsLongRest={itsLongRest}
+              onChangeTimer={this.changeTimer}
+              onSetTimerValue={this.setTimerValue}
+            />
+            <div className="container">
+              <PomodoroTimer
+                itsVisible={timerVisible}
+                timerValue={currentTime}
+                onStartTimer={this.startTimer}
+                onStopTimer={this.stopTimer}
+                onResetTimer={this.resetTimer}
+              />
+            </div>
+          </div>
+        </div>
+        <br />
+
+        <br />
         <PomodoroTasksForm
           taskText={taskTxt}
           onAddTask={this.addTask}
